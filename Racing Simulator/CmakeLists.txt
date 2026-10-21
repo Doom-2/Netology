@@ -1,7 +1,20 @@
 ﻿cmake_minimum_required(VERSION 3.22.0)
-project(RacingSimulator)
-set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
-set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}")
+project(RacingSimulator CXX)
+ 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+# exe и библиотека собираются в одну папку, чтобы exe находил DLL рядом с собой
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+ 
+# Все исходники в UTF-8 (раньше часть файлов была в cp1251, часть в UTF-8)
+if(MSVC)
+    add_compile_options(/utf-8)
+endif()
+ 
 add_subdirectory(RacingSimulatorDLL)
+ 
 add_executable(RacingSimulator RacingSimulator.cpp)
-target_link_libraries(RacingSimulator RacingSimulatorDLL)
+target_link_libraries(RacingSimulator PRIVATE RacingSimulatorDLL)

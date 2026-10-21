@@ -32,5 +32,7 @@ set(SOURCE_HD
 "Broom.h"
 "Race.h"
 )
+
+# На Windows экспортируем все символы автоматически (не нужен __declspec(dllexport))
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 add_library(RacingSimulatorDLL SHARED ${SOURCE_LIB} ${SOURCE_HD})
