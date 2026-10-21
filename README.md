@@ -1,13 +1,11 @@
 # Game of Life
 
-## Реализация клеточного автомата Конвея на C++
+## A simple implementation of Conway's Game of Life in C++
 
-«Игра жизни» — это мир, который развивается без участия игрока: достаточно задать начальную конфигурацию, и дальнейшая судьба каждой клетки определяется соседями.
+This project simulates a cellular automaton on a square grid. Each cell is either alive or dead, and its state changes from one generation to the next according to the states of its neighboring cells.
 
-Вселенная представлена двумерным полем. Живая клетка (`*`) выживает при двух или трёх соседях, погибает от одиночества или перенаселения, а мёртвая клетка (`-`) рождается, если вокруг неё ровно три живых соседа. Правила применяются одновременно ко всему поколению.
+The simulation uses two symbols: an asterisk (`*`) represents a living cell, and a hyphen (`-`) represents a dead cell. A living cell survives if it has two or three living neighbors; a dead cell becomes alive if it has exactly three. In all other cases, the cell is dead in the next generation.
 
-Начальное состояние загружается из файла [`Game of Life/initial_data.txt`](./Game%20of%20Life/initial_data.txt): первая строка задаёт размеры поля, последующие строки содержат координаты живых клеток. Программа печатает каждое поколение, количество живых клеток и отслеживает два финала: исчезновение всей жизни или стабильную конфигурацию, которая больше не меняется.
+The initial grid is loaded from [`Game of Life/initial_data.txt`](./Game%20of%20Life/initial_data.txt). The first line contains the grid dimensions, followed by the initial cell states. The program then applies the rules to each cell and displays the resulting generations.
 
-Основная логика проекта разделена на функции подсчёта соседей, построения нового состояния, копирования и сравнения вселенных. Для корректной работы с краями поля предусмотрены отдельные случаи для углов, границ и внутренних клеток.
-
-Проект содержит Visual Studio solution и распространяется под лицензией GNU GPL v3.0. Подробные условия приведены в [`Game of Life/LICENSE.txt`](./Game%20of%20Life/LICENSE.txt).
+The project includes a Visual Studio solution and is distributed under the GNU GPL v3.0 license. See [`Game of Life/LICENSE.txt`](./Game%20of%20Life/LICENSE.txt) for the license text.
