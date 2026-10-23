@@ -2,10 +2,20 @@
 #include "RacingSimulatorDLL/PrintFunc.h"
 #include "RacingSimulatorDLL/Vehicles.h"
 
+#ifdef _WIN32
+#define NOMINMAX
+#include <windows.h>
+#endif
+
 
 int main()
 {
-	setlocale(LC_ALL, "russian");
+#ifdef _WIN32
+	// The source files use UTF-8, so configure the console to use UTF-8 as well.
+	SetConsoleOutputCP(CP_UTF8);
+	SetConsoleCP(CP_UTF8);
+#endif
+
 	int raceType, dist, vehicleModel{}, mode{};
 	double vehicleTime;
 
