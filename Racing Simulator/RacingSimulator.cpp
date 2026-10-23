@@ -15,18 +15,18 @@ int main()
 		std::cout << "Добро пожаловать в гоночный симулятор!" << std::endl;
 		printRaceTypeList();
 		raceType = cinInt(3);
-		system("cls");
+		clearScreen();
 		std::cout << "Укажите длину дистанции (должна быть положительна): ";
 		dist = cinInt();
 		Race race(raceType, dist);
-		system("cls");
+		clearScreen();
 		printRaceTitle(race);
 		std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
 
 		// main logic
 		while (true)
 		{
-			system("cls");
+			clearScreen();
 			printRaceTitle(race);
 			if (race.getVehicleCount())
 				printvehicleDataList(race, vehicleDataArray);
@@ -36,7 +36,7 @@ int main()
 
 				// if zero is entered and there are no registered vehicles
 				if (vehicleModel == 0 && !race.getVehicleCount()) {
-					system("cls");
+					clearScreen();
 					printRaceTitle(race);
 					std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
 					printVehicleList();
@@ -44,7 +44,7 @@ int main()
 				}
 				// if zero is entered and the number of registered vehicles is not enough to start the race
 				else if (vehicleModel == 0 && race.getVehicleCount() < 2) {
-					system("cls");
+					clearScreen();
 					printRaceTitle(race);
 					std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
 					printvehicleDataList(race, vehicleDataArray);
@@ -60,13 +60,13 @@ int main()
 					std::string vehicleName{};
 					try {
 						race.registerVehicle(vehicleModel, vehicleName, vehicleTime);
-						system("cls");
+						clearScreen();
 						std::cout << vehicleName << " успешно зарегистрирован!" << std::endl;
 						vehicleDataArray[race.getVehicleCount() - 1].vehicleName = vehicleName;
 						vehicleDataArray[race.getVehicleCount() - 1].vehicleTime = vehicleTime;
 					}
 					catch (std::exception& e) {
-						system("cls");
+						clearScreen();
 						std::cout << e.what() << std::endl;
 					}
 					printRaceTitle(race);
@@ -77,7 +77,7 @@ int main()
 				}
 
 			}
-			system("cls");
+			clearScreen();
 			printRaceTitle(race);
 			printModeMenu();
 			mode = cinInt(2);
@@ -86,14 +86,14 @@ int main()
 			if (mode == 2)
 				break;
 		}
-		system("cls");
+		clearScreen();
 		printRaceStatistics(vehicleDataArray, race.getVehicleCount());
 		std::cout << std::endl;
 		printRetryOrFinish();
 		mode = cinInt(2);
 		if (mode == 1) {
 			delete[] vehicleDataArray;
-			system("cls");
+			clearScreen();
 			continue;
 		}
 		if (mode == 2) {
