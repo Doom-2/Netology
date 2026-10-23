@@ -4,3 +4,5 @@
 void bubbleSort(vehicleData* vData, int size);
 
 int cinInt(int maxNum = 0, bool allowZero = false);
+
+void clearScreen();
