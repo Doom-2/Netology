@@ -1,8 +1,6 @@
 ﻿#include "Vehicle.h"
 
 
-Vehicle::Vehicle() : _name(), _speed() {}
-
 Vehicle::Vehicle(const std::string& name, const int& speed)
 	: _name(name), _speed(speed) {}
 

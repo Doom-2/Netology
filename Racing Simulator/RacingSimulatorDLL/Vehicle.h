@@ -10,8 +10,6 @@ protected:
 	int _speed;
 
 public:
-	Vehicle();
-
 	Vehicle(const std::string& name, const int& speed);
 	
 	virtual ~Vehicle() = default;
