@@ -2,6 +2,8 @@
 #include "RacingSimulatorDLL/PrintFunc.h"
 #include "RacingSimulatorDLL/Vehicles.h"
 
+#include <vector>
+
 #ifdef _WIN32
 #define NOMINMAX
 #include <windows.h>
@@ -21,7 +23,8 @@ int main()
 
 	while (true)
 	{
-		vehicleData* vehicleDataArray = new vehicleData[7];
+		// vector manages its own memory, replacing manual new[]/delete[].
+		std::vector<vehicleData> vehicleDataArray(7);
 		std::cout << "Добро пожаловать в гоночный симулятор!" << std::endl;
 		printRaceTypeList();
 		raceType = cinInt(3);
@@ -39,7 +42,7 @@ int main()
 			clearScreen();
 			printRaceTitle(race);
 			if (race.getVehicleCount())
-				printvehicleDataList(race, vehicleDataArray);
+				printvehicleDataList(race, vehicleDataArray.data());
 			printVehicleList();
 			while (true) {
 				vehicleModel = cinInt(7, true);
@@ -57,7 +60,7 @@ int main()
 					clearScreen();
 					printRaceTitle(race);
 					std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
-					printvehicleDataList(race, vehicleDataArray);
+					printvehicleDataList(race, vehicleDataArray.data());
 					printVehicleList();
 					continue;
 				}
@@ -81,7 +84,7 @@ int main()
 					}
 					printRaceTitle(race);
 					if (race.getVehicleCount())
-						printvehicleDataList(race, vehicleDataArray);
+						printvehicleDataList(race, vehicleDataArray.data());
 					printVehicleList();
 					continue;
 				}
@@ -97,17 +100,15 @@ int main()
 				break;
 		}
 		clearScreen();
-		printRaceStatistics(vehicleDataArray, race.getVehicleCount());
+		printRaceStatistics(vehicleDataArray.data(), race.getVehicleCount());
 		std::cout << std::endl;
 		printRetryOrFinish();
 		mode = cinInt(2);
 		if (mode == 1) {
-			delete[] vehicleDataArray;
 			clearScreen();
 			continue;
 		}
 		if (mode == 2) {
-			delete[] vehicleDataArray;
 			break;
 		}
 	}
