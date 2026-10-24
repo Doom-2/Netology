@@ -30,7 +30,7 @@ public:
 
 	void registerVehicle(size_t vehicleNumber, std::string& vehicleName, double& vehicleTime);
 
-	int getVehicleCount();
+	int getVehicleCount() const;
 
 	int getRaceDist() const;
 

@@ -87,7 +87,7 @@ void Race::registerVehicle(size_t vehicleNumber, std::string& vehicleName, doubl
 	vehicle_count++;
 }
 
-int Race::getVehicleCount() {
+int Race::getVehicleCount() const {
 	return vehicle_count;
 }
 
