@@ -13,9 +13,10 @@ public:
 	Vehicle();
 
 	Vehicle(const std::string& name, const int& speed);
+	
+	virtual ~Vehicle() = default;
 
 	std::string getName();
 
-	double calcRaceTime(int dist) const;
+	virtual double calcRaceTime(int dist) const;
 };
-
