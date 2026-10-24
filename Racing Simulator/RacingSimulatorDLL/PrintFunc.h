@@ -6,7 +6,7 @@ void printRaceStatistics(vehicleData* vData, int size);
 
 void printRaceTypeList();
 
-void printRaceTitle(Race& r);
+void printRaceTitle(const Race& r);
 
 void printModeMenu();
 
@@ -14,4 +14,4 @@ void printRetryOrFinish();
 
 void printVehicleList();
 
-void printvehicleDataList(Race& r, vehicleData* vDataArray);
+void printvehicleDataList(const Race& r, vehicleData* vDataArray);

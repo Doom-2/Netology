@@ -18,7 +18,7 @@ void printRaceTypeList() {
 	std::cout << "Выберите тип гонки: ";
 }
 
-void printRaceTitle(Race& r) {
+void printRaceTitle(const Race& r) {
 	switch (r.getRaceType())
 	{
 	case Race::RaceType::GROUND:
@@ -61,7 +61,7 @@ void printVehicleList() {
 	std::cout << "Выберите транспорт или 0 для окончания процесса регистрации: ";
 }
 
-void printvehicleDataList(Race& r, vehicleData* vDataArray) {
+void printvehicleDataList(const Race& r, vehicleData* vDataArray) {
 	std::cout << "Зарегистрированные транспортные средства: ";
 	for (int i = 0; i < r.getVehicleCount(); i++)
 		if (i == r.getVehicleCount() - 1)
