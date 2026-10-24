@@ -3,12 +3,36 @@
 #include "AuxFunc.h"
 #include "Race.h"
 
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <string>
 
+namespace {
+	// Round to the nearest tenth before formatting
+	std::string formatTime(double time) {
+		const double roundedTime = std::round(time * 10.0) / 10.0;
+		std::ostringstream out;
+
+		// Omit the decimal part for whole numbers; otherwise show one decimal place.
+		if (roundedTime == std::floor(roundedTime)) {
+			out << std::fixed << std::setprecision(0) << roundedTime;
+		}
+		else {
+			out << std::fixed << std::setprecision(1) << roundedTime;
+		}
+		return out.str();
+	}
+} /* anonymous namespace */
+
+
+// Sorts vehicles by time and prints the race results.
 void printRaceStatistics(vehicleData* vData, int size) {
 	bubbleSort(vData, size);
 	std::cout << "Результаты гонки:" << std::endl;
+
 	for (int i = 0; i < size; i++)
-		std::cout << i + 1 << ". " << vData[i].vehicleName << ". Время: " << vData[i].vehicleTime << std::endl;
+		std::cout << i + 1 << ". " << vData[i].vehicleName << ". Время: " << formatTime(vData[i].vehicleTime) << std::endl;
 }
 
 void printRaceTypeList() {
