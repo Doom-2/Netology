@@ -18,98 +18,105 @@ int main()
 	SetConsoleCP(CP_UTF8);
 #endif
 
-	int raceType, dist, vehicleModel{}, mode{};
-	double vehicleTime;
-
-	while (true)
+	try
 	{
-		// vector manages its own memory, replacing manual new[]/delete[].
-		std::vector<vehicleData> vehicleDataArray(7);
-		std::cout << "Добро пожаловать в гоночный симулятор!" << std::endl;
-		printRaceTypeList();
-		raceType = cinInt(3);
-		clearScreen();
-		std::cout << "Укажите длину дистанции (должна быть положительна): ";
-		dist = cinInt();
-		Race race(raceType, dist);
-		clearScreen();
-		printRaceTitle(race);
-		std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
+		int raceType, dist, vehicleModel{}, mode{};
+		double vehicleTime;
 
-		// main logic
 		while (true)
 		{
+			// vector manages its own memory, replacing manual new[]/delete[].
+			std::vector<vehicleData> vehicleDataArray(7);
+			std::cout << "Добро пожаловать в гоночный симулятор!" << std::endl;
+			printRaceTypeList();
+			raceType = cinInt(3);
+			clearScreen();
+			std::cout << "Укажите длину дистанции (должна быть положительна): ";
+			dist = cinInt();
+			Race race(raceType, dist);
 			clearScreen();
 			printRaceTitle(race);
-			if (race.getVehicleCount())
-				printvehicleDataList(race, vehicleDataArray.data());
-			printVehicleList();
-			while (true) {
-				vehicleModel = cinInt(7, true);
+			std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
 
-				// if zero is entered and there are no registered vehicles
-				if (vehicleModel == 0 && !race.getVehicleCount()) {
-					clearScreen();
-					printRaceTitle(race);
-					std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
-					printVehicleList();
-					continue;
-				}
-				// if zero is entered and the number of registered vehicles is not enough to start the race
-				else if (vehicleModel == 0 && race.getVehicleCount() < 2) {
-					clearScreen();
-					printRaceTitle(race);
-					std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
+			// main logic
+			while (true)
+			{
+				clearScreen();
+				printRaceTitle(race);
+				if (race.getVehicleCount())
 					printvehicleDataList(race, vehicleDataArray.data());
-					printVehicleList();
-					continue;
-				}
-				// if zero is entered and the number of registered vehicles is enough to start the race
-				else if (vehicleModel == 0 && race.getVehicleCount() >= 2)
-					break;
+				printVehicleList();
+				while (true) {
+					vehicleModel = cinInt(7, true);
 
-				// if non-zero is entered, try to register the vehicle
-				if (vehicleModel) {
-					std::string vehicleName{};
-					try {
-						race.registerVehicle(vehicleModel, vehicleName, vehicleTime);
+					// if zero is entered and there are no registered vehicles
+					if (vehicleModel == 0 && !race.getVehicleCount()) {
 						clearScreen();
-						std::cout << vehicleName << " успешно зарегистрирован!" << std::endl;
-						vehicleDataArray[race.getVehicleCount() - 1].vehicleName = vehicleName;
-						vehicleDataArray[race.getVehicleCount() - 1].vehicleTime = vehicleTime;
+						printRaceTitle(race);
+						std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
+						printVehicleList();
+						continue;
 					}
-					catch (std::exception& e) {
+					// if zero is entered and the number of registered vehicles is not enough to start the race
+					else if (vehicleModel == 0 && race.getVehicleCount() < 2) {
 						clearScreen();
-						std::cout << e.what() << std::endl;
-					}
-					printRaceTitle(race);
-					if (race.getVehicleCount())
+						printRaceTitle(race);
+						std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
 						printvehicleDataList(race, vehicleDataArray.data());
-					printVehicleList();
-					continue;
-				}
+						printVehicleList();
+						continue;
+					}
+					// if zero is entered and the number of registered vehicles is enough to start the race
+					else if (vehicleModel == 0 && race.getVehicleCount() >= 2)
+						break;
 
+					// if non-zero is entered, try to register the vehicle
+					if (vehicleModel) {
+						std::string vehicleName{};
+						try {
+							race.registerVehicle(vehicleModel, vehicleName, vehicleTime);
+							clearScreen();
+							std::cout << vehicleName << " успешно зарегистрирован!" << std::endl;
+							vehicleDataArray[race.getVehicleCount() - 1].vehicleName = vehicleName;
+							vehicleDataArray[race.getVehicleCount() - 1].vehicleTime = vehicleTime;
+						}
+						catch (std::exception& e) {
+							clearScreen();
+							std::cout << e.what() << std::endl;
+						}
+						printRaceTitle(race);
+						if (race.getVehicleCount())
+							printvehicleDataList(race, vehicleDataArray.data());
+						printVehicleList();
+						continue;
+					}
+
+				}
+				clearScreen();
+				printRaceTitle(race);
+				printModeMenu();
+				mode = cinInt(2);
+				if (mode == 1)
+					continue;
+				if (mode == 2)
+					break;
 			}
 			clearScreen();
-			printRaceTitle(race);
-			printModeMenu();
+			printRaceStatistics(vehicleDataArray.data(), race.getVehicleCount());
+			std::cout << std::endl;
+			printRetryOrFinish();
 			mode = cinInt(2);
-			if (mode == 1)
+			if (mode == 1) {
+				clearScreen();
 				continue;
+			}
 			if (mode == 2)
 				break;
 		}
-		clearScreen();
-		printRaceStatistics(vehicleDataArray.data(), race.getVehicleCount());
-		std::cout << std::endl;
-		printRetryOrFinish();
-		mode = cinInt(2);
-		if (mode == 1) {
-			clearScreen();
-			continue;
-		}
-		if (mode == 2) {
-			break;
-		}
+	}
+	catch (const std::runtime_error& e)
+	{
+		std::cerr << std::endl << e.what() << std::endl;
+		return 1;
 	}
 }
