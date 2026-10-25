@@ -10,7 +10,7 @@ protected:
 	int _speed;
 
 public:
-	Vehicle(const std::string& name, const int& speed);
+	Vehicle(const std::string name, int speed);
 	
 	virtual ~Vehicle() = default;
 

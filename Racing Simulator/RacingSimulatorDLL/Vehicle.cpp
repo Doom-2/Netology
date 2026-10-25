@@ -1,8 +1,9 @@
 ﻿#include "Vehicle.h"
+#include <utility>
 
 
-Vehicle::Vehicle(const std::string& name, const int& speed)
-	: _name(name), _speed(speed) {}
+Vehicle::Vehicle(std::string name, int speed)
+	: _name(std::move(name)), _speed(speed) {}
 
 double Vehicle::calcRaceTime(int dist) const {
 	return static_cast<double>(dist / _speed);
