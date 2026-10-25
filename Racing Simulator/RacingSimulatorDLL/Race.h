@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <iostream>
+#include <set>
 
 class Race
 {
@@ -40,4 +41,5 @@ protected:
 	RaceType _rt{RaceType::GROUND};
 	VehicleModel _vm{ VehicleModel::CAMEL };
 	int _dist{};
+	std::set<VehicleModel> _registered;
 };

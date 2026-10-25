@@ -84,6 +84,8 @@ void Race::registerVehicle(size_t vehicleNumber, std::string& vehicleName, doubl
 	default:
 		break;
 	}
+	if (!_registered.insert(_vm).second)
+		throw std::overflow_error(vehicleName + " уже зарегистрирован!");
 	vehicle_count++;
 }
 
