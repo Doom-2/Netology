@@ -9,6 +9,6 @@ double Vehicle::calcRaceTime(int dist) const {
 	return static_cast<double>(dist / _speed);
 }
 
-std::string Vehicle::getName() {
+const std::string Vehicle::getName() const {
 	return _name;
 }
