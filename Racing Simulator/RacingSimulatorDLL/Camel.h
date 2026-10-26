@@ -6,6 +6,4 @@ class Camel : public GroundVehicle
 {
 public:
 	Camel();
-
-	double calcRaceTime(int dist);
 };

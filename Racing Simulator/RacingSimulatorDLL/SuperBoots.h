@@ -6,6 +6,4 @@ class SuperBoots : public GroundVehicle
 {
 public:
 	SuperBoots();
-
-	double calcRaceTime(int dist);
 };
