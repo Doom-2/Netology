@@ -12,13 +12,6 @@ unsigned int Race::vehicle_count;
 
 Race::Race(int rt, int dist) : _rt(static_cast<RaceType>(rt)), _dist(dist) 
 { 
-	Camel::resetCount();
-	FastCamel::resetCount();
-	Centaur::resetCount();
-	SuperBoots::resetCount();
-	MagicCarpet::resetCount();
-	Eagle::resetCount();
-	Broom::resetCount();
 	vehicle_count = 0;
 }
 
