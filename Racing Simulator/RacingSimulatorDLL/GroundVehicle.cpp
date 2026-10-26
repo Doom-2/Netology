@@ -21,3 +21,11 @@ void GroundVehicle::calcBrakeNumber(int dist) {
 		else
 			_breakNumber = (dist / _speed) / _moveTime;
 }
+
+// Returns the number of rest stops required for the given distance.
+int GroundVehicle::calcRestCount(int dist) const {
+	const long long legDist = static_cast<long long>(_speed) * _moveTime;
+	if (dist <= legDist)
+		return 0;
+	return static_cast<int>((dist - 1) / legDist);
+}

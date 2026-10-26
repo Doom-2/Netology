@@ -10,6 +10,7 @@ protected:
 	int _breakTime{};
 	int _breakNumber{};
 	std::vector<double> _restTimes;
+	int calcRestCount(int dist) const;
 
 public:
 
@@ -19,4 +20,6 @@ public:
 
 
 	void calcBrakeNumber(int dist);
+
+	double calcRaceTime(int dist) const override;
 };
