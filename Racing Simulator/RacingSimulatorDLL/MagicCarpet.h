@@ -8,4 +8,7 @@ public:
 	MagicCarpet();
 
 	double calcRaceTime(int dist);
+
+protected:
+	int distReductionPercent(int dist) const override;
 };
