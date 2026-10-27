@@ -7,6 +7,6 @@ class Broom : public AirVehicle
 public:
 	Broom();
 
-	double calcRaceTime(int dist);
-
+protected:
+	int distReductionPercent(int dist) const override;
 };

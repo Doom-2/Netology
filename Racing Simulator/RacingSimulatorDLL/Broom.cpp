@@ -2,7 +2,7 @@
 
 Broom::Broom() : AirVehicle("Метла", 20) {}
 
-
-double Broom::calcRaceTime(int dist) {
-	return dist * (1 - (dist / 1000) / 100.0) / _speed;
+// Reduce the distance by 1% for every full 1,000 units.
+int Broom::distReductionPercent(int dist) const {
+	return dist / 1000;
 }
