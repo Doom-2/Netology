@@ -16,5 +16,5 @@ public:
 
 	const std::string getName() const;
 
-	virtual double calcRaceTime(int dist) const;
+	virtual double calcRaceTime(int dist) const = 0;
 };
