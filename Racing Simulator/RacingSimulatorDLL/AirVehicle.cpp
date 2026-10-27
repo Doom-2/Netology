@@ -1,7 +1,7 @@
 ﻿#include "AirVehicle.h"
 
-AirVehicle::AirVehicle(const std::string& name, const int& speed)
-	: Vehicle(name, speed) {}
+AirVehicle::AirVehicle(const std::string& name, int speed, int baseReduction)
+	: Vehicle(name, speed), _distReductionFactor(baseReduction) {}
 
 int AirVehicle::distReductionPercent(int /*dist*/) const {
 	return _distReductionFactor	;

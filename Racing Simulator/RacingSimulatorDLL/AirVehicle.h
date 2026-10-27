@@ -11,7 +11,7 @@ protected:
 	virtual int distReductionPercent(int dist) const;
 
 public:
-	AirVehicle(const std::string& name, const int& speed);
+	AirVehicle(const std::string& name, int speed, int baseReduction = 0);
 
 	double calcRaceTime(int dist) const;
 };
