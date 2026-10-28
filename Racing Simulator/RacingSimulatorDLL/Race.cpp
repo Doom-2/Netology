@@ -51,62 +51,13 @@ void Race::registerVehicle(size_t vehicleNumber, std::string& vehicleName, doubl
 		_rt == RaceType::AIR && _vm < VehicleModel::MAGIC_CARPET)
 		throw std::logic_error("Попытка зарегистрировать неправильный тип транспортного средства!");
 
-	switch (_vm)
-	{
-	case Race::VehicleModel::CAMEL:
-	{
-		Camel camel;
-		vehicleName = camel.getName();
-		vehicleTime = camel.calcRaceTime(_dist);
-	}
-	break;
-	case Race::VehicleModel::FAST_CAMEL:
-	{
-		FastCamel fast_camel;
-		vehicleName = fast_camel.getName();
-		vehicleTime = fast_camel.calcRaceTime(_dist);
-	}
-	break;
-	case Race::VehicleModel::CENTAUR:
-	{
-		Centaur centaur;
-		vehicleName = centaur.getName();
-		vehicleTime = centaur.calcRaceTime(_dist);
-	}
-	break;
-	case Race::VehicleModel::SUPER_BOOTS:
-	{
-		SuperBoots super_boots;
-		vehicleName = super_boots.getName();
-		vehicleTime = super_boots.calcRaceTime(_dist);
-	}
-	break;
-	case Race::VehicleModel::MAGIC_CARPET:
-	{
-		MagicCarpet magic_carpet;
-		vehicleName = magic_carpet.getName();
-		vehicleTime = magic_carpet.calcRaceTime(_dist);
-	}
-	break;
-	case Race::VehicleModel::EAGLE:
-	{
-		Eagle eagle;
-		vehicleName = eagle.getName();
-		vehicleTime = eagle.calcRaceTime(_dist);
-	}
-	break;
-	case Race::VehicleModel::BROOM:
-	{
-		Broom broom;
-		vehicleName = broom.getName();
-		vehicleTime = broom.calcRaceTime(_dist);
-	}
-	break;
-	default:
-		break;
-	}
+	const std::unique_ptr<Vehicle> vehicle = createVehicle(_vm);
+	vehicleName = vehicle->getName();
+	vehicleTime = vehicle->calcRaceTime(_dist);
+
 	if (!_registered.insert(_vm).second)
-		throw std::overflow_error(vehicleName + " уже зарегистрирован!");
+		throw std::overflow_error(vehicle->getName() + " уже зарегистрирован!");
+
 	vehicle_count++;
 }
 
