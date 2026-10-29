@@ -5,9 +5,6 @@
 
 class Race
 {
-private:
-	static unsigned int vehicle_count;
-
 public:
 	enum class RaceType
 	{
@@ -39,7 +36,6 @@ public:
 
 protected:
 	RaceType _rt{RaceType::GROUND};
-	VehicleModel _vm{ VehicleModel::CAMEL };
 	int _dist{};
 	std::set<VehicleModel> _registered;
 };
