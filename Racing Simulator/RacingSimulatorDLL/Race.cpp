@@ -1,12 +1,6 @@
 ﻿//#include "Vehicle.h"
 #include "Race.h"
-#include "Camel.h"
-#include "FastCamel.h"
-#include "Centaur.h"
-#include "SuperBoots.h"
-#include "MagicCarpet.h"
-#include "Eagle.h"
-#include "Broom.h"
+#include "Vehicles.h"
 
 #include <memory>
 #include <stdexcept>
@@ -38,11 +32,8 @@ namespace {
 
 Race::Race(int rt, int dist) : _rt(static_cast<RaceType>(rt)), _dist(dist) {}
 
-void Race::registerVehicle(size_t vehicleNumber, std::string& vehicleName, double& vehicleTime) {
-	const VehicleModel vm = static_cast<VehicleModel>(vehicleNumber);
-	if (vm < VehicleModel::CAMEL || vm > VehicleModel::BROOM)
-		throw std::domain_error("Ошибка ввода! Введите 1-7 или 0");
-	else if (_rt == RaceType::GROUND && vm > VehicleModel::SUPER_BOOTS ||
+void Race::registerVehicle(VehicleModel vm, std::string& vehicleName, double& vehicleTime) {
+	if (_rt == RaceType::GROUND && vm > VehicleModel::SUPER_BOOTS ||
 		_rt == RaceType::AIR && vm < VehicleModel::MAGIC_CARPET)
 		throw std::logic_error("Попытка зарегистрировать неправильный тип транспортного средства!");
 

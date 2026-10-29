@@ -26,7 +26,7 @@ public:
 
 	Race(int rt, int dist);
 
-	void registerVehicle(size_t vehicleNumber, std::string& vehicleName, double& vehicleTime);
+	void registerVehicle(VehicleModel vm, std::string& vehicleName, double& vehicleTime);
 
 	int getVehicleCount() const;
 

@@ -20,7 +20,7 @@ int main()
 
 	try
 	{
-		int raceType, dist, vehicleModel{}, mode{};
+		int raceType, dist, vehicleIndex{}, mode{};
 		double vehicleTime;
 
 		while (true)
@@ -47,10 +47,10 @@ int main()
 					printvehicleDataList(race, vehicleDataArray.data());
 				printVehicleList();
 				while (true) {
-					vehicleModel = cinInt(7, true);
+					vehicleIndex = cinInt(7, true);
 
 					// if zero is entered and there are no registered vehicles
-					if (vehicleModel == 0 && !race.getVehicleCount()) {
+					if (vehicleIndex == 0 && !race.getVehicleCount()) {
 						clearScreen();
 						printRaceTitle(race);
 						std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
@@ -58,7 +58,7 @@ int main()
 						continue;
 					}
 					// if zero is entered and the number of registered vehicles is not enough to start the race
-					else if (vehicleModel == 0 && race.getVehicleCount() < 2) {
+					else if (vehicleIndex == 0 && race.getVehicleCount() < 2) {
 						clearScreen();
 						printRaceTitle(race);
 						std::cout << "Должно быть зарегистрировано хотя бы 2 транспортных средства" << std::endl;
@@ -67,11 +67,12 @@ int main()
 						continue;
 					}
 					// if zero is entered and the number of registered vehicles is enough to start the race
-					else if (vehicleModel == 0 && race.getVehicleCount() >= 2)
+					else if (vehicleIndex == 0 && race.getVehicleCount() >= 2)
 						break;
 
 					// if non-zero is entered, try to register the vehicle
-					if (vehicleModel) {
+					if (vehicleIndex) {
+						auto vehicleModel = static_cast<Race::VehicleModel>(vehicleIndex);
 						std::string vehicleName{};
 						try {
 							race.registerVehicle(vehicleModel, vehicleName, vehicleTime);
