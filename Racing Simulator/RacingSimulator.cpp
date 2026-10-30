@@ -2,6 +2,8 @@
 #include "RacingSimulatorDLL/PrintFunc.h"
 #include "RacingSimulatorDLL/Vehicles.h"
 
+#include <iostream>
+#include <stdexcept>
 #include <vector>
 
 #ifdef _WIN32

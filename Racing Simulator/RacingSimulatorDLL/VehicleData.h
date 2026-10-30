@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include <string>
 
 // Struct with data for race result
 struct vehicleData
