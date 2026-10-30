@@ -1,8 +1,10 @@
 ﻿#pragma once
 
-#include <iostream>
+#include <cstddef>
 #include <set>
+#include <string>
 
+// Race: stores type and distance, enforces registration rules, tracks registered vehicles.
 class Race
 {
 public:
@@ -26,6 +28,9 @@ public:
 
 	Race(int rt, int dist);
 
+	// Registers a vehicle; outputs name and race time via reference params.
+	// Throws: domain_error (invalid number), logic_error (wrong race type),
+	//         overflow_error (vehicle already registered).
 	void registerVehicle(VehicleModel vm, std::string& vehicleName, double& vehicleTime);
 
 	int getVehicleCount() const;
@@ -37,5 +42,5 @@ public:
 protected:
 	RaceType _rt{RaceType::GROUND};
 	int _dist{};
-	std::set<VehicleModel> _registered;
+	std::set<VehicleModel> _registered; // replaces static counters in each class
 };
