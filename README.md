@@ -62,4 +62,8 @@ virtual double calcRaceTime(int dist) const = 0;
 
 Ролик знакомит с гоночным симулятором, его функциональностью и ключевыми решениями, использованными при разработке.
 
-<!-- Вставьте ссылку на загруженное видео -->
+<a href="https://youtube.com/shorts/UBgNGKQk-kc?feature=share">
+  <img src="./Racing Simulator/media/preview.png"
+       alt="Видео Racing Simulator"
+       width="200">
+</a>
